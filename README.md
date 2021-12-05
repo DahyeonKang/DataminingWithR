@@ -5,7 +5,7 @@ R을 이용한 데이터 마이닝
 
 
 | Ch |  Contents  |
-|:----:|---------|
+|:----:|----------|
 |7장|k-인접이웃분류(K-Nearest Neighbor, KNN)|
 |8장|신경망모형(Artificial Neural Networks, ANN)|
 |9장|서포트 벡터 머신(Support Vector Machine, SVM)|
