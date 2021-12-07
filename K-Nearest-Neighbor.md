@@ -1,7 +1,7 @@
 K-Nearest Neighbor
 ================
 Dahyeon Kang
-2021-12-06
+2021-12-08
 
 ### KNN이란
 
@@ -13,6 +13,8 @@ k-인접이웃분류() 모형은 새로운 데이터(설명변수)와 가장 유
 
 KNN은 분류와 회귀에서 가까운 이웃에 대해 큰 가중(weight)를 부여할 수
 있다. KNN은 데이터의 지역 구조에 민감하다는 단점을 가지고 있다.
+
+### 예제를 통한 KNN 분석
 
 {class} 패키지의 `knn()` 함수를 이용해 iris3 자료를 KNN 분류 분석해보자.
 `knn(train, test, cl, k, ..)` :
@@ -100,9 +102,9 @@ table(testset[,'Species'], model_3)
 
     ##             model_3
     ##              setosa versicolor virginica
-    ##   setosa         15          0         0
-    ##   versicolor      0         14         1
-    ##   virginica       0          2        13
+    ##   setosa         11          0         0
+    ##   versicolor      0         16         0
+    ##   virginica       0          0        18
 
 ``` r
 model_5_norm <- kNN(Species ~ ., trainset, testset, norm=TRUE, k=5)
@@ -111,9 +113,9 @@ table(testset[,'Species'], model_5_norm)
 
     ##             model_5_norm
     ##              setosa versicolor virginica
-    ##   setosa         15          0         0
-    ##   versicolor      0         14         1
-    ##   virginica       0          2        13
+    ##   setosa         11          0         0
+    ##   versicolor      0         16         0
+    ##   virginica       0          0        18
 
 ``` r
 model_6_norm <- kNN(Species ~ ., trainset, testset, norm=TRUE, k=6)
@@ -122,9 +124,9 @@ table(testset[,'Species'], model_6_norm)
 
     ##             model_6_norm
     ##              setosa versicolor virginica
-    ##   setosa         15          0         0
-    ##   versicolor      0         15         0
-    ##   virginica       0          3        12
+    ##   setosa         11          0         0
+    ##   versicolor      0         16         0
+    ##   virginica       0          0        18
 
 ``` r
 model_8 <- kNN(Species ~ ., trainset, testset, norm=FALSE, k=8)
@@ -133,9 +135,9 @@ table(testset[,'Species'], model_8)
 
     ##             model_8
     ##              setosa versicolor virginica
-    ##   setosa         15          0         0
-    ##   versicolor      0         14         1
-    ##   virginica       0          0        15
+    ##   setosa         11          0         0
+    ##   versicolor      0         16         0
+    ##   virginica       0          0        18
 
 사실 iris 데이터는 단위가 다른 변수가 있는 게 아니기 때문에 정규화를
 시키지 않아도 된다.
@@ -172,56 +174,56 @@ summary(iris.kknn)
     ## 
     ## Response: "nominal"
     ##           fit prob.setosa prob.versicolor prob.virginica
-    ## 1  versicolor           0     1.000000000    0.000000000
-    ## 2  versicolor           0     0.954786745    0.045213255
-    ## 3   virginica           0     0.312442084    0.687557916
-    ## 4      setosa           1     0.000000000    0.000000000
-    ## 5      setosa           1     0.000000000    0.000000000
-    ## 6      setosa           1     0.000000000    0.000000000
-    ## 7   virginica           0     0.158875791    0.841124209
-    ## 8  versicolor           0     0.772504193    0.227495807
-    ## 9   virginica           0     0.094948125    0.905051875
-    ## 10  virginica           0     0.003678874    0.996321126
-    ## 11 versicolor           0     0.682085046    0.317914954
-    ## 12 versicolor           0     1.000000000    0.000000000
-    ## 13     setosa           1     0.000000000    0.000000000
-    ## 14 versicolor           0     1.000000000    0.000000000
-    ## 15  virginica           0     0.000000000    1.000000000
-    ## 16  virginica           0     0.163262999    0.836737001
-    ## 17     setosa           1     0.000000000    0.000000000
-    ## 18 versicolor           0     0.895472823    0.104527177
-    ## 19  virginica           0     0.257363876    0.742636124
-    ## 20     setosa           1     0.000000000    0.000000000
-    ## 21     setosa           1     0.000000000    0.000000000
-    ## 22     setosa           1     0.000000000    0.000000000
-    ## 23 versicolor           0     1.000000000    0.000000000
-    ## 24  virginica           0     0.000000000    1.000000000
-    ## 25     setosa           1     0.000000000    0.000000000
-    ## 26 versicolor           0     1.000000000    0.000000000
-    ## 27     setosa           1     0.000000000    0.000000000
-    ## 28 versicolor           0     1.000000000    0.000000000
-    ## 29 versicolor           0     1.000000000    0.000000000
-    ## 30  virginica           0     0.000000000    1.000000000
-    ## 31  virginica           0     0.000000000    1.000000000
-    ## 32 versicolor           0     0.780239021    0.219760979
-    ## 33  virginica           0     0.000000000    1.000000000
-    ## 34 versicolor           0     1.000000000    0.000000000
-    ## 35 versicolor           0     1.000000000    0.000000000
-    ## 36 versicolor           0     0.996321061    0.003678939
-    ## 37 versicolor           0     1.000000000    0.000000000
-    ## 38  virginica           0     0.000000000    1.000000000
-    ## 39     setosa           1     0.000000000    0.000000000
-    ## 40 versicolor           0     1.000000000    0.000000000
-    ## 41  virginica           0     0.344006240    0.655993760
-    ## 42 versicolor           0     0.907502741    0.092497259
-    ## 43     setosa           1     0.000000000    0.000000000
-    ## 44  virginica           0     0.000000000    1.000000000
-    ## 45     setosa           1     0.000000000    0.000000000
-    ## 46     setosa           1     0.000000000    0.000000000
-    ## 47     setosa           1     0.000000000    0.000000000
-    ## 48  virginica           0     0.000000000    1.000000000
-    ## 49  virginica           0     0.000000000    1.000000000
-    ## 50  virginica           0     0.499660642    0.500339358
+    ## 1      setosa           1      0.00000000     0.00000000
+    ## 2      setosa           1      0.00000000     0.00000000
+    ## 3   virginica           0      0.00000000     1.00000000
+    ## 4  versicolor           0      1.00000000     0.00000000
+    ## 5      setosa           1      0.00000000     0.00000000
+    ## 6   virginica           0      0.30008950     0.69991050
+    ## 7   virginica           0      0.00000000     1.00000000
+    ## 8   virginica           0      0.00000000     1.00000000
+    ## 9   virginica           0      0.00000000     1.00000000
+    ## 10  virginica           0      0.19897037     0.80102963
+    ## 11 versicolor           0      1.00000000     0.00000000
+    ## 12  virginica           0      0.28907791     0.71092209
+    ## 13     setosa           1      0.00000000     0.00000000
+    ## 14 versicolor           0      0.96380648     0.03619352
+    ## 15  virginica           0      0.00000000     1.00000000
+    ## 16  virginica           0      0.00000000     1.00000000
+    ## 17     setosa           1      0.00000000     0.00000000
+    ## 18  virginica           0      0.21542752     0.78457248
+    ## 19 versicolor           0      1.00000000     0.00000000
+    ## 20  virginica           0      0.00000000     1.00000000
+    ## 21 versicolor           0      1.00000000     0.00000000
+    ## 22  virginica           0      0.08775331     0.91224669
+    ## 23     setosa           1      0.00000000     0.00000000
+    ## 24  virginica           0      0.00000000     1.00000000
+    ## 25     setosa           1      0.00000000     0.00000000
+    ## 26     setosa           1      0.00000000     0.00000000
+    ## 27  virginica           0      0.00000000     1.00000000
+    ## 28 versicolor           0      1.00000000     0.00000000
+    ## 29     setosa           1      0.00000000     0.00000000
+    ## 30     setosa           1      0.00000000     0.00000000
+    ## 31 versicolor           0      0.75269021     0.24730979
+    ## 32     setosa           1      0.00000000     0.00000000
+    ## 33  virginica           0      0.00000000     1.00000000
+    ## 34     setosa           1      0.00000000     0.00000000
+    ## 35 versicolor           0      1.00000000     0.00000000
+    ## 36     setosa           1      0.00000000     0.00000000
+    ## 37 versicolor           0      1.00000000     0.00000000
+    ## 38  virginica           0      0.00000000     1.00000000
+    ## 39  virginica           0      0.00000000     1.00000000
+    ## 40 versicolor           0      1.00000000     0.00000000
+    ## 41     setosa           1      0.00000000     0.00000000
+    ## 42     setosa           1      0.00000000     0.00000000
+    ## 43     setosa           1      0.00000000     0.00000000
+    ## 44     setosa           1      0.00000000     0.00000000
+    ## 45  virginica           0      0.47771747     0.52228253
+    ## 46 versicolor           0      1.00000000     0.00000000
+    ## 47  virginica           0      0.13276820     0.86723180
+    ## 48 versicolor           0      0.55746368     0.44253632
+    ## 49 versicolor           0      1.00000000     0.00000000
+    ## 50  virginica           0      0.00000000     1.00000000
 
 ``` r
 fit <- fitted(iris.kknn)
@@ -231,9 +233,9 @@ table(iris.valid$Species, fit)
 
     ##             fit
     ##              setosa versicolor virginica
-    ##   setosa         15          0         0
-    ##   versicolor      0         16         0
-    ##   virginica       0          2        17
+    ##   setosa         17          0         0
+    ##   versicolor      0         13         2
+    ##   virginica       0          0        18
 
 ``` r
 # 시각화
@@ -339,7 +341,7 @@ trainset[c(model$C), ]
     ## 5 Pujols,Albert   95   92   65
 
 인덱스가 4, 5로 나오지만 이 인덱스를 무시하고, 위에서 순서대로 따지면
-trainset에서 3, 4번쨰에 위치해 있다. 따라서 Waler와 Pujols가 Bonds의
+trainset에서 3, 4번째에 위치해 있다. 따라서 Waler와 Pujols가 Bonds의
 인접 이웃이다.
 
 ``` r
@@ -352,3 +354,212 @@ trainset
     ## 4   Walker,Larry   89   79   99
     ## 5  Pujols,Albert   95   92   65
     ## 6 Pedroia,Dustin   70   90  100
+
+R 패키지 {FNN}의 `get.knnx()`를 통해 인접 이웃을 구해보자.
+
+``` r
+library(FNN)
+```
+
+    ## Warning: package 'FNN' was built under R version 4.0.5
+
+    ## 
+    ## Attaching package: 'FNN'
+
+    ## The following objects are masked from 'package:class':
+    ## 
+    ##     knn, knn.cv
+
+``` r
+get.knnx(data=trainset[ , c('lag1', 'lag2')],
+         query=testset[ , c('lag1', 'lag2')], k=2)
+```
+
+    ## $nn.index
+    ##      [,1] [,2]
+    ## [1,]    3    4
+    ## 
+    ## $nn.dist
+    ##          [,1] [,2]
+    ## [1,] 1.414214   13
+
+nn.index가 인접이웃의 index가 3,4번이라고 알려주고, nn.dist가
+인접이웃과의 default 거리인 Euclidean 거리 계산값을 보여준다.
+
+``` r
+trainset[c(3, 4), 'name']
+```
+
+    ## [1] "Walker,Larry"  "Pujols,Albert"
+
+위 `trainset[c(model$C), ]` 코드와 마찬가지로 인접이웃을 알려준다.
+
+### {caret}을 이용한 KNN 분석
+
+R 패키지 {caret}을 통해서 KNN을 수행해보자.
+
+#### (a)표본추출
+
+`createDataPartition()`로 매우 편리하게 자료를 분할할 수 있다.  
+\* `y`, y(반응변수)의 class 혹은 label.  
+\* `p`, train 데이터에 사용할 전체 데이터에서의 비율.  
+\* `list`, 분할한 결과를 리스트로 반환할지 여부. FALSE이면 matrix
+반환.  
+`prop.table()`은 matrix를 proportion 테이블로 변환시켜주는 함수.
+
+``` r
+library(ISLR)
+```
+
+    ## Warning: package 'ISLR' was built under R version 4.0.5
+
+``` r
+library(caret)
+```
+
+    ## Warning: package 'caret' was built under R version 4.0.5
+
+    ## Loading required package: ggplot2
+
+    ## Warning: package 'ggplot2' was built under R version 4.0.5
+
+    ## 
+    ## Attaching package: 'caret'
+
+    ## The following object is masked from 'package:kknn':
+    ## 
+    ##     contr.dummy
+
+``` r
+set.seed(100)
+train.idx <- createDataPartition(y=Smarket$Direction, p=0.75, list=FALSE)
+trainset <- Smarket[train.idx, ]
+testset <- Smarket[-train.idx, ]
+prop.table(table(trainset$Direction)) * 100
+```
+
+    ## 
+    ##     Down       Up 
+    ## 48.18763 51.81237
+
+``` r
+prop.table(table(testset$Direction)) * 100
+```
+
+    ## 
+    ##     Down       Up 
+    ## 48.07692 51.92308
+
+``` r
+prop.table(table(Smarket$Direction)) * 100
+```
+
+    ## 
+    ##  Down    Up 
+    ## 48.16 51.84
+
+#### (b)전처리
+
+KNN 분류를 수행하기 위해 변수의 정규화 혹은 척도화가 필효하다. R 패키지
+{caret}의 `preProcess()`함수를 통해 중심화, 척도화 전처리를 해준다.
+
+``` r
+train.x <- trainset[ , names(trainset) != 'Direction']  # 반응변수(y)를 제외
+(pre.values <- preProcess(x=train.x, method=c('center', 'scale')))
+```
+
+    ## Created from 938 samples and 8 variables
+    ## 
+    ## Pre-processing:
+    ##   - centered (8)
+    ##   - ignored (0)
+    ##   - scaled (8)
+
+#### (C)훈련과 훈련 조절
+
+cross validation에 기초해 적합한 결과, 인접 이웃의 크기 k가 29일 때
+모델이 가장 성능이 좋다고 나온다.
+
+``` r
+set.seed(200)
+control <- trainControl(method='repeatedcv', repeats=3)
+knn.fit <- train(Direction ~ ., data=trainset, method='knn',
+                 trControl=control,
+                 preProcess=c('center', 'scale'), tuneLength=20)
+knn.fit
+```
+
+    ## k-Nearest Neighbors 
+    ## 
+    ## 938 samples
+    ##   8 predictor
+    ##   2 classes: 'Down', 'Up' 
+    ## 
+    ## Pre-processing: centered (8), scaled (8) 
+    ## Resampling: Cross-Validated (10 fold, repeated 3 times) 
+    ## Summary of sample sizes: 844, 844, 843, 844, 845, 845, ... 
+    ## Resampling results across tuning parameters:
+    ## 
+    ##   k   Accuracy   Kappa    
+    ##    5  0.8837625  0.7668667
+    ##    7  0.8823439  0.7641736
+    ##    9  0.8798806  0.7591151
+    ##   11  0.8930660  0.7855027
+    ##   13  0.8923603  0.7840046
+    ##   15  0.8983926  0.7959911
+    ##   17  0.9008712  0.8008697
+    ##   19  0.8998034  0.7987302
+    ##   21  0.9015651  0.8021944
+    ##   23  0.9015574  0.8021663
+    ##   25  0.9072465  0.8135966
+    ##   27  0.9072542  0.8135649
+    ##   29  0.9111626  0.8214699
+    ##   31  0.9090274  0.8171458
+    ##   33  0.9058319  0.8107612
+    ##   35  0.9097479  0.8186335
+    ##   37  0.9076353  0.8143704
+    ##   39  0.9065752  0.8122363
+    ##   41  0.9080164  0.8150995
+    ##   43  0.9090842  0.8172527
+    ## 
+    ## Accuracy was used to select the optimal model using the largest value.
+    ## The final value used for the model was k = 29.
+
+``` r
+plot(knn.fit)
+```
+
+![](K-Nearest-Neighbor_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+
+``` r
+knn.predict <- predict(knn.fit, newdata=testset)
+confusionMatrix(knn.predict, testset$Direction)
+```
+
+    ## Confusion Matrix and Statistics
+    ## 
+    ##           Reference
+    ## Prediction Down  Up
+    ##       Down  124   8
+    ##       Up     26 154
+    ##                                           
+    ##                Accuracy : 0.891           
+    ##                  95% CI : (0.8511, 0.9233)
+    ##     No Information Rate : 0.5192          
+    ##     P-Value [Acc > NIR] : < 2.2e-16       
+    ##                                           
+    ##                   Kappa : 0.7808          
+    ##                                           
+    ##  Mcnemar's Test P-Value : 0.003551        
+    ##                                           
+    ##             Sensitivity : 0.8267          
+    ##             Specificity : 0.9506          
+    ##          Pos Pred Value : 0.9394          
+    ##          Neg Pred Value : 0.8556          
+    ##              Prevalence : 0.4808          
+    ##          Detection Rate : 0.3974          
+    ##    Detection Prevalence : 0.4231          
+    ##       Balanced Accuracy : 0.8886          
+    ##                                           
+    ##        'Positive' Class : Down            
+    ## 
